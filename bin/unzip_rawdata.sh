@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_PATH="./raw/"
+DATA_PATH="../dat/raw/"
 
 cd `dirname $0`
 cd $DATA_PATH
