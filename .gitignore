@@ -130,18 +130,21 @@ dmypy.json
 
 
 # 
-/out/*
+# /out/*
 
-/dat/*
-!/dat/processed/
-/tmp/processed/*
-!/dat/processed/README.md
-!/dat/processed/customer/
-!/dat/processed/subscriber/
-/dat/processed/customer/*
-/dat/processed/subscriber/*
-!/dat/processed/customer/*.gz
-!/dat/processed/subscriber/*.gz
+# /dat/*
+# !/dat/processed/
+# /tmp/processed/*
+# !/dat/processed/README.md
+# !/dat/processed/customer/
+# !/dat/processed/subscriber/
+# /dat/processed/customer/*
+# /dat/processed/subscriber/*
+# !/dat/processed/customer/*.gz
+# !/dat/processed/subscriber/*.gz
+
+dat
+out
 
 rawdata
 
