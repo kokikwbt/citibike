@@ -1,6 +1,6 @@
 # Citi Bike NYC dataset
 
-This is a repository to process Citi Bike NYC dataset
+Repository to process Citi Bike NYC dataset
 provided at:  
 https://www.citibikenyc.com/system-data  
 

@@ -143,4 +143,8 @@ dmypy.json
 !/dat/processed/customer/*.gz
 !/dat/processed/subscriber/*.gz
 
+rawdata
+
 .vscode
+
+*.pdf

@@ -2,7 +2,7 @@
 # Script to download NYC tripdata from:
 # https://s3.amazonaws.com/tripdata/index.html
 
-CITIBIKE_URL="https://s3.amazonaws.com/tripdata/"  # Don't change
+CITIBIKE_URL="https://s3.amazonaws.com/tripdata/"  # Do not change
 OUTPATH="../dat/raw/"
 
 cd `dirname $0`
@@ -26,8 +26,9 @@ while [ "$d" != "2021-04-01" ]; do
         FILENAME=$DATE"-citibike-tripdata.csv.zip"
         # e.g., https://s3.amazonaws.com/tripdata/201701-citibike-tripdata.csv.zip
     fi
-
-    echo $FILENAME
+https://s3.amazonaws.com/tripdata/201701-citibike-tripdata.csv.zip 
+    # echo $FILENAME
+    echo $CITIBIKE_URL$FILENAME
 
     if [ -e $OUTPATH$FILENAME ]; then
         echo "File exists."
