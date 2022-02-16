@@ -1,19 +1,26 @@
 # Citi Bike NYC dataset
 
-Repository to process Citi Bike NYC dataset
-provided at:  
+Repository for ultra-quick access to 
+NYC Citi Bike trip history data:  
 https://www.citibikenyc.com/system-data  
 
-## Download/unzip the original data
+## Usage
 
-You can easily access all citibike trip data with the following some scripts.
+- Step 1: Run:  
 
-```sh
-$ bash bin/download_rawdata.sh  # bash only
-$ sh bin/unzip_rawdata.sh  
-$ sh bin/rename_rawdata.sh  
-```
+    ```bash
+    sh download_tripdata.sh
+    ```
+- Step 2: Import this module in Python:  
 
-## View the downloaded data
+    ```python
+    import citibike
+    ```
+
+## Running examples
 
 Please see Jupyter notebooks in ```notebooks``` directory.
+
+## License
+
+MIT.

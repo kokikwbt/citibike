@@ -61,9 +61,34 @@ def load_data(date=None, date_from=None, date_to=None, clean=True):
             for date in pd.date_range(start=date_from, end=date_to, freq='M')])
 
 
-def list2tensor():
-    return
+def define_non_temporal_modes(df, facets, freq_rate=0.9, skip_mode=None):
+    """
+        df: DataFrame object of trip data
+        facets: List of column names used in analysis
+        freq_rate: threshold to extract frequent attributes
+        skip_mode: List of boolian values.
+            If True, then skip the mode in frequent attribute extraction
+    """
+    if skip_mode is None:
+        skip_mode = [False] * len(facets)
 
+    # Extracting the top [freq_rate] % attritbutes for each mode
+    freq_rates = df[facets].nunique().values * freq_rate
+    freq_shape = freq_rates.astype(int)
+    freq_entities = [df.groupby(a).size().sort_values().iloc[-r:].index if not s else [] for a, r, s in zip(facets, freq_shape, skip_mode)]
 
-def get_fixed_station_info(date_from=None, date_to=None):
-    return
+    # Filtering out the infrequent attributes
+    valid_events = df
+    for i, (mode, skip) in enumerate(zip(facets, skip_mode)):
+        if not skip:
+            valid_events = valid_events[valid_events[mode].isin(freq_entities[i])]
+
+    print('Filtered out {} samples'.format(df.shape[0] - valid_events.shape[0]))
+
+    # Getting the attributes to keep track
+    multi_index = valid_events.groupby(facets).size().rename('size').to_frame()
+    multi_index = multi_index.unstack(fill_value=0).stack()
+
+    shape = valid_events[facets].nunique().values.astype(int)
+
+    return multi_index, shape
