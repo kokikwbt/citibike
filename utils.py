@@ -25,14 +25,13 @@ def cleaning(df, user_type=None, add_user_age=True):
     df.loc[:, 'starttime'] = pd.to_datetime(df.starttime)
     df.loc[:, 'stoptime'] = pd.to_datetime(df.stoptime)
     df.loc[:, 'year'] = df.starttime.dt.year
-    df.loc[:, 'hour'] = df.starttime.dt.hour
-    df.loc[:, 'weekday'] = df.starttime.dt.weekday.astype(str).str.cat(
-        df.starttime.dt.day_name().str[:3], sep='-')
-    df.loc[:, 'weekday-hour'] = df.hour.astype(str).str.cat(
-        df.starttime.dt.day_name().str[:3], sep='-')
+    df.loc[:, 'hour'] = df.starttime.dt.hour.astype(str).str.zfill(2)
+    df.loc[:, 'day_name'] = df.starttime.dt.day_name().str[:3]
+    df.loc[:, 'weekday'] = df.starttime.dt.weekday.astype(str).str.cat(df.day_name, sep='-')
+    df.loc[:, 'weekday-hour'] = df.hour.str.cat(df.weekday, sep='-')
 
     if add_user_age:
-        df.loc[:, 'user_age'] = df.year - df.birthyear
+        df.loc[:, 'user_age'] = (df.year - df.birthyear).astype(int)
         df = df.query('user_age>=0')
         df = df.query('user_age<=80')
 
