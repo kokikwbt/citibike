@@ -28,7 +28,7 @@ def cleaning(df, user_type=None, add_user_age=True):
     df.loc[:, 'hour'] = df.starttime.dt.hour.astype(str).str.zfill(2)
     df.loc[:, 'day_name'] = df.starttime.dt.day_name().str[:3]
     df.loc[:, 'weekday'] = df.starttime.dt.weekday.astype(str).str.cat(df.day_name, sep='-')
-    df.loc[:, 'weekday-hour'] = df.hour.str.cat(df.weekday, sep='-')
+    df.loc[:, 'weekday-hour'] = df.weekday.str.cat(df.hour, sep='-')
 
     if add_user_age:
         df.loc[:, 'user_age'] = (df.year - df.birthyear).astype(int)
