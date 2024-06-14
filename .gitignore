@@ -143,9 +143,8 @@ dmypy.json
 # !/dat/processed/customer/*.gz
 # !/dat/processed/subscriber/*.gz
 
-dat
+data
 out
-
 rawdata
 
 .vscode

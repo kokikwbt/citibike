@@ -1,26 +1,27 @@
-# Citi Bike NYC dataset
+# NYC citibike dataset
 
-Repository for ultra-quick access to 
-NYC Citi Bike trip history data:  
+A repository for quick access to 
+NYC citibike trip history data:  
 https://www.citibikenyc.com/system-data  
+
 
 ## Usage
 
-- Step 1: Run:  
+Run ```download.sh``` to download a file.
+- -y: year, YYYY
+- -m: month, MM
+- -o: output directory
 
-    ```bash
-    sh download_tripdata.sh
-    ```
-- Step 2: Import this module in Python:  
+```bash
+# download tripdata for 2023
+$ sh download.sh -y 2023 -o ./data/
 
-    ```python
-    import citibike
-    ```
+# download tripdata for Jan 2023
+$ sh download.sh -y 2023 -m 01 -o ./data/
+```
 
-## Running examples
+Run ```download_full.sh``` to download all available yearly tripdata.
 
-Please see Jupyter notebooks in ```notebooks``` directory.
-
-## License
-
-MIT.
+```bash
+$ sh download_full.sh OUTDIR
+```
