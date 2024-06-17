@@ -13,12 +13,17 @@ Run ```download.sh``` to download a file.
 - -o: output directory
 
 ```bash
-# download tripdata for 2023
+# download tripdata of a specified year
 $ sh download.sh -y 2023 -o ./data/
 
-# download tripdata for Jan 2023
+# download JC tripdata of specified year and month
 $ sh download.sh -y 2023 -m 01 -o ./data/
 ```
+
+Yearly tripdata contains 12 directories (e.g., 1_January)  
+and each directory contains some CSV files consisting of up to 100M trips.  
+"JC" refers to Jersey City,  
+JC tripdata are smaller than the yearly tripdata.
 
 Run ```download_full.sh``` to download all available yearly tripdata.
 

@@ -1,0 +1,5 @@
+# Configure for citibike tripdata
+
+# relative path to your citibike tripdata directory
+# default: "./data"
+data_path: "./data"
