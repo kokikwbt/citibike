@@ -5,28 +5,31 @@ NYC citibike trip history data:
 https://www.citibikenyc.com/system-data  
 
 
-## Usage
+## Data
 
-Run ```download.sh``` to download a file.
-- -y: year, YYYY
-- -m: month, MM
-- -o: output directory
+```download.sh``` is a shellscript to obtain trip data. Please follow the three examples.
+
+### 1. Tripdata for a year
+
+Use ```-y``` to download one-year data. It is separated into 12 directories, each of which has multiple CSV files up to 100M records. ```-m``` is unavailable for yearly data.
 
 ```bash
-# download tripdata of a specified year
-$ sh download.sh -y 2023 -o ./data/
-
-# download JC tripdata of specified year and month
-$ sh download.sh -y 2023 -m 01 -o ./data/
+sh download.sh -y 2023 -o ./data
 ```
 
-Yearly tripdata contains 12 directories (e.g., 1_January)  
-and each directory contains some CSV files consisting of up to 100M trips.  
-"JC" refers to Jersey City,  
-JC tripdata are smaller than the yearly tripdata.
+### 2. Full tripdata
 
-Run ```download_full.sh``` to download all available yearly tripdata.
+Use ```-a``` to download all available trip data at once.
+It will take a while to complete.
 
 ```bash
-$ sh download_full.sh OUTDIR
+sh download.sh -a -o ./data
+```
+
+### 3. Jersey City data
+
+Use ```-j``` to download Jersey City trip data.
+```-m``` option is also required.
+```bash
+sh download.sh -j -y 2023 -m 01 -o ./data
 ```

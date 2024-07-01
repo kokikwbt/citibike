@@ -150,4 +150,5 @@ rawdata
 .vscode
 
 *.pdf
+*.csv
 .DS_Store

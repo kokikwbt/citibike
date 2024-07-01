@@ -6,21 +6,29 @@
 URL="https://s3.amazonaws.com/tripdata/"
 
 # Default parameters
-Y="2023"
-M=""
 OUTDIR="./data/"
+YEAR=2023
+START=2013
+END=2023
 
 cd `dirname $0`
 
-
-while getopts y:m:o: OPT
+while getopts ajy:m:o: OPT
 do
     case $OPT in
-        y)
-            Y=${OPTARG}  # year
+        a)
+            # All tripdata will be downloaded if specified
+            ALL=1
             ;;
-        m)
-            M=${OPTARG}  # month (e.g., 01)
+        j)
+            # Jersey City data will be downloaded if 1
+            # It also needs to specify YEAR and MONTH
+            JC=1
+            ;;
+        y)
+            YEAR=${OPTARG}
+            ;;
+        m)  MONTH=${OPTARG}  # e.g., "01"
             ;;
         o)
             OUTDIR=${OPTARG}
@@ -32,16 +40,16 @@ do
     esac
 done
 
-
-if [ $M ]; then
-    FN="JC-${Y}${M}-citibike-tripdata.csv.zip"
-else
-    FN="${Y}-citibike-tripdata.zip"
-fi
-
-
 if [ ! -d $OUTDIR ]; then
     mkdir -p $OUTDIR
 fi
 
-wget $URL$FN -P $OUTDIR
+if [ ! -z $ALL ]; then
+    for YEAR in $(seq $START $END); do
+        wget "${URL}${YEAR}-citibike-tripdata.zip" -P $OUTDIR
+    done
+elif [ ! -z $JC ]; then
+    wget "${URL}JC-${YEAR}${MONTH}-citibike-tripdata.csv.zip" -P $OUTDIR
+else
+    wget "${URL}${YEAR}-citibike-tripdata.zip" -P $OUTDIR
+fi
